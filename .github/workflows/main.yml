@@ -62,6 +62,10 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git add .
           if ! git diff --staged --quiet; then
-            git commit -m "Github Action Auto Updated"
+            git commit -m "Github Action Auto Upda1ted"
             git push --force
           fi
+      - name: upload result_fliles
+        run: |
+          curl -X POST -H "Content-Type: multipart/form-data" -F "file=@./result.m3u"  ${{ secrets.url }}
+          curl -X POST -H "Content-Type: multipart/form-data" -F "file=@./result.txt"  ${{ secrets.url }}
