@@ -67,8 +67,14 @@ jobs:
           fi
 
       - name: List current directory
-        run: ls -la
+        run: |
+         ls -la
+         cd output
+         ls -la
+
       - name: upload result_fliles
         run: |
-          curl -X POST -H "Content-Type: multipart/form-data" -F "file=@$GITHUB_WORKSPACE/result.m3u"  ${{ secrets.url }}
-          curl -X POST -H "Content-Type: multipart/form-data" -F "file=@$GITHUB_WORKSPACE/result.txt"  ${{ secrets.url }}
+          curl -X POST -H "Content-Type: multipart/form-data" -F "file=@./output/result.m3u"  ${{ secrets.url }}
+          curl -X POST -H "Content-Type: multipart/form-data" -F "file=@./output/result.txt"  ${{ secrets.url }}
+          echo ${{ github.workspace }}
+          echo $GITHUB_WORKSPACE
