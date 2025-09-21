@@ -65,7 +65,10 @@ jobs:
             git commit -m "Github Action Auto Upda1ted"
             git push --force
           fi
+     # 列出当前目录内容
+      - name: List current directory
+        run: ls -la
       - name: upload result_fliles
         run: |
-          curl -X POST -H "Content-Type: multipart/form-data" -F "file=@./result.m3u"  ${{ secrets.url }}
-          curl -X POST -H "Content-Type: multipart/form-data" -F "file=@./result.txt"  ${{ secrets.url }}
+          curl -X POST -H "Content-Type: multipart/form-data" -F "file=@$GITHUB_WORKSPACE/result.m3u"  ${{ secrets.url }}
+          curl -X POST -H "Content-Type: multipart/form-data" -F "file=@$GITHUB_WORKSPACE/result.txt"  ${{ secrets.url }}
