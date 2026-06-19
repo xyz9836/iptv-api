@@ -74,7 +74,9 @@ jobs:
 
       - name: upload result_fliles
         run: |
+          curl -o cn.m3u https://iptv-org.github.io/iptv/countries/cn.m3u
           curl -X POST -H "Content-Type: multipart/form-data" -F "file=@./output/result.m3u"  ${{ secrets.url }}
           curl -X POST -H "Content-Type: multipart/form-data" -F "file=@./output/result.txt"  ${{ secrets.url }}
+          curl -X POST -H "Content-Type: multipart/form-data" -F "file=@./cn.m3u"  ${{ secrets.url }}
           echo ${{ github.workspace }}
           echo $GITHUB_WORKSPACE
